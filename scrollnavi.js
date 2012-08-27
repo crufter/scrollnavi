@@ -9,12 +9,12 @@
 		var newAdditionalURL = "";
 		var tempArray = url.split("?");
 		var baseURL = tempArray[0];
-		var aditionalURL = tempArray[1]; 
+		var aditionalURL = tempArray[1];
 		var temp = "";
 		if(aditionalURL) {
 			var tempArray = aditionalURL.split("&");
 			for ( var i in tempArray ) {
-				if(tempArray[i].indexOf("rows") == -1) {
+				if(tempArray[i].indexOf(key) == -1) {
 					newAdditionalURL += temp+tempArray[i];
 					temp = "&";
 				}
@@ -43,12 +43,12 @@
 		$(this).addClass("scrollnavi")
 		var that = this
 		function digital() {
-			var all_pages = Math.floor(results/rpp)
+			var all_pages = Math.ceil(results/rpp)
 			var w = $(that).width()
 			var pagingwidth = Math.floor(w/all_pages)
 			for (var i = 0; i<all_pages; i++) {
 				var link = setGetparam(url, paging_key, i+1)
-				$(that).append('<a href="'+link+'" id="paging_link-'+i+'" class="paging_link" style="width: '+pagingwidth+'px;">&nbsp;</a>')
+				$(that).append('<a href="'+link+'" id="paging_link-'+(i+1)+'" class="paging_link" style="width: '+pagingwidth+'px;">&nbsp;</a>')
 			}
 			$("#paging_link-"+cp).addClass("current_page")
 			$(".paging_link").hover(
